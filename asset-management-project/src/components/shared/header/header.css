@@ -1,0 +1,21 @@
+
+/* Head Component css */
+.head {
+  padding: 10px 0;
+  color: red;
+}
+
+.logo span {
+  display: inline;
+  font-size: 25px;
+  font-weight: 900;
+  width: 100%;
+  text-align: justify;
+  height: 5px;
+}
+
+.icons-social div {
+  float: right;
+  display: flex;
+  flex-direction: row;
+}
