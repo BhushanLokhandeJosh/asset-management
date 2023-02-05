@@ -1,0 +1,19 @@
+
+
+.form {
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    margin:7% 25%;
+    
+}
+
+.button-submit{
+    display: flex;
+    float: left;
+    margin-left: 10px;
+}
+
+.form-group {
+    width:100%
+}
