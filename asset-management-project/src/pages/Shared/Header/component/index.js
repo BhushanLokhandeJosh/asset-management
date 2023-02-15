@@ -18,7 +18,7 @@ const Header = () => {
       <section className="head">
         <div className="container flexSB">
           <div className="logo">
-            <span>Asset Management System</span>
+            <p>Asset Management System</p>
           </div>
 
           <Container className="icons-social">

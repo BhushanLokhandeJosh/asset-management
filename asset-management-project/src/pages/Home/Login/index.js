@@ -1,15 +1,16 @@
-import { Link } from "react-router-dom";
+
 import Login from "./component";
 import { useSelector } from "react-redux";
-
+import NavbarComponent from "../../Shared/Navbar/NavbarComponent";
 
 const loginContainer = () => {
-
   return (
-    <Login
-      // onSubmit={onSubmit}
-    />
+    <>
+      <NavbarComponent />
+      <Login />
+    </>
   );
 };
 
 export default React.memo(loginContainer);
+

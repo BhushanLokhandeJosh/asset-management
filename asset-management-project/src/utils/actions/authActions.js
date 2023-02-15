@@ -2,13 +2,15 @@ import * as types from "./actionTypes";
 
 
 //Registration actions.
-export const registrationStart = () => ({
-  type: types.LOAD_USER_REGISTER
+export const registrationStart = (user,navigate) => ({
+  type: types.LOAD_USER_REGISTER,
+  payload:user,
+  navigate
 });
 
 export const registrationSuccess = (user) => ({
   type: types.SUCCESS_USER_REGISTER,
-  payload: user,
+  payload:user
 });
 
 export const registrationError = (error) => ({
@@ -18,13 +20,15 @@ export const registrationError = (error) => ({
 
 
 //Login actions.
-export const loginStart = (user) => ({
+export const loginStart = (user,navigate) => ({
     type:types.LOAD_USER_LOGIN,
-    payload:user
+    payload:user,
+    navigate
 })
 
-export const loginSuccess = () => ({
+export const loginSuccess = (user,token) => ({
   type: types.SUCCESS_USER_LOGIN,
+  payload:{user,token}
 });
 
 export const loginError = (error) => ({
@@ -35,12 +39,11 @@ export const loginError = (error) => ({
 
 //Logout actions.
 export const logoutStart = () => ({
-    type:types.LOAD_USER_SIGNOUT
+    type:types.LOAD_USER_SIGNOUT,
 })
 
-export const logoutSuccess = (user) => ({
+export const logoutSuccess = () => ({
   type: types.SUCCESS_USER_SIGNOUT,
-  payload: user,
 });
 
 export const logoutError = (error) => ({

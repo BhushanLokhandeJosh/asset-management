@@ -1,7 +1,7 @@
 import Carousel from "react-bootstrap/Carousel";
-import "../card.css";
+import "../hero.css";
 
-import { corouselImages } from "../../../../assets/images/image";
+import image1 from "../../../../assets/image/front-page.png";
 
 function CarouselComponent() {
   return (
@@ -11,35 +11,11 @@ function CarouselComponent() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={corouselImages.firstImage}
+            src={image1}
             alt="First slide"
           />
           <Carousel.Caption>
             <h3>First slide</h3>
-          </Carousel.Caption>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={corouselImages.secondImage}
-            alt="Second slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Second slide</h3>
-          </Carousel.Caption>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={corouselImages.thirdImage}
-            alt="Third slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Third slide</h3>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

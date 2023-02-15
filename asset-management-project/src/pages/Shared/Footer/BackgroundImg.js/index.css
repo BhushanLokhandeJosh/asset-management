@@ -1,0 +1,12 @@
+
+
+.bg-style{
+    background-image: url(../../../../assets/image/front-page.png);
+    background-repeat: no-repeat;
+    background-color: antiquewhite;
+    height: 500px;
+    background-position: center;
+    background-size: cover;
+    width: 90%;
+    margin: auto;
+}

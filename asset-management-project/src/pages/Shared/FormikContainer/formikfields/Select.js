@@ -4,10 +4,10 @@ import FormError from "./FormError";
 const Select = (props) => {
   const { label, name, options, ...other } = props;
   return (
-    <div className="mb-3 row">
+    <div>
       <label
         htmlFor={name}
-        className="col-sm-2 col-form-label"
+        // className="col-sm-2 col-form-label"
         style={{ fontSize: "25px", fontWeight: "bold" }}
       >
         {label}

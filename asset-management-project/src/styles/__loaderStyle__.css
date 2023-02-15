@@ -1,0 +1,8 @@
+.loader-style{
+   
+    position: fixed;
+    left: 50%;
+    top: 35%;
+    display: none;
+    background-color: yellow;
+}

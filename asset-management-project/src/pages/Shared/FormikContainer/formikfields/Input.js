@@ -6,10 +6,9 @@ import { ReactElement } from "react";
 const Input = (props) => {
   const { label, name, ...other } = props;
   return (
-    <div className="mb-3 row">
+    <div>
       <label
         htmlFor={name}
-        className="col-sm-2 col-form-label"
         style={{ fontSize: "25px", fontWeight: "bold" }}
       >
         {label}

@@ -1,0 +1,19 @@
+
+.view-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:auto;
+    width:30%;
+    align-self: center;
+    border: 1px solid black;
+    padding: 5%;
+    border-radius: 10px;
+    border-style: dotted;
+    box-shadow: 30px;
+}
+
+.view-container{
+    margin: 5%;
+}
+

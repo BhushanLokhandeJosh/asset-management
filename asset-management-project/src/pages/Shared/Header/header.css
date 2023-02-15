@@ -1,11 +1,14 @@
 
 /* Head Component css */
 .head {
-  padding: 10px 0;
+  margin-top: 20px;
+  padding: 20px 0;
   color: red;
+  display: inline;
+  font-size: large;
 }
 
-.logo span {
+.logo p {
   display: inline;
   font-size: 25px;
   font-weight: 900;

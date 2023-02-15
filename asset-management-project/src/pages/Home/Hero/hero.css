@@ -1,0 +1,19 @@
+.corousel-outer{
+    background-color: rgb(130, 143, 130,0.1);
+    margin-top: 20px;
+}
+
+
+.corousel-inner{
+    padding: 20px 20px;
+    width:70%;
+    margin:auto;
+    
+}
+
+.card-style{
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    border: 0.2 px solid gray;
+}

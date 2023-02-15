@@ -1,12 +1,13 @@
-
 import CarouselComponent from "./Corousel";
-import CardComponent from "./Card";
+import AssetHome from "../../../Shared/allAssets/AssetHome";
+import NavbarComponent from "../../../Shared/Navbar/NavbarComponent";
 
 const Hero = () => {
   return (
     <>
+      <NavbarComponent/>
       <CarouselComponent />
-      <CardComponent />
+      <AssetHome />
     </>
   );
 };

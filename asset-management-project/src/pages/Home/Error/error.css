@@ -1,0 +1,22 @@
+.error-style{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.error-style h2 {
+    color: rgb(29, 22, 22);
+    margin-bottom: 40px;
+}
+
+.error-style img{
+    width:50%;
+}
+
+.btn{
+    margin-top: 20px;
+}
+

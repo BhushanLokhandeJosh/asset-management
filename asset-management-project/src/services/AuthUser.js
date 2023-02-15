@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { loginSuccess, logoutStart } from "../utils/actions/authActions";
 
 
 export const getToken = () => {
@@ -18,4 +17,21 @@ export const saveToken = (user, token) => {
   sessionStorage.setItem("token", JSON.stringify(token));
   sessionStorage.setItem("user", JSON.stringify(user));
 };
+
+export const removeToken = () => {
+  sessionStorage.removeItem("token");
+  sessionStorage.removeItem("user");
+}
+
+export const checkAutoLogin = (dispatch) => {
+  const tokenDetails = getToken();
+  const userDetails = getUser();
+
+  if(!tokenDetails){
+    dispatch(logoutStart())
+    return;
+  }else{
+    dispatch(loginSuccess(userDetails,tokenDetails))
+  }
+}
 

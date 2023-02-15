@@ -2,7 +2,7 @@ import React from "react";
 import "../about.css";
 import { homeAbout } from "../../../../data/dummydata";
 
-import { aboutUsImage } from "../../../../assets/images/image";
+import { aboutUsImage } from "../../../../data/dummydata";
 
 const AboutCard = () => {
   return (

@@ -8,6 +8,7 @@ import FormikControl from "../../../Shared/FormikContainer/formikControl";
 import "../login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loginStart } from "../../../../utils/actions/authActions";
+import { ROUTES } from "../../../../routes/constants";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,10 +45,9 @@ const Login = () => {
       "user":data
     }
     
-    dispatch(loginStart(loggedUserDetails));
+    dispatch(loginStart(loggedUserDetails,navigate));
 
-    navigate("/dashboard");
-
+    // navigate("/dashboard");
   };
 
   return (
@@ -82,7 +82,7 @@ const Login = () => {
                 <button
                   type="submit"
                   className="btn btn-danger"
-                  // disabled={!formikProps.isValid || formikProps.isSubmitting}
+                  disabled={!formikProps.isValid || formikProps.isSubmitting}
                 >
                   Submit
                 </button>

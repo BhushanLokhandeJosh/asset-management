@@ -1,11 +1,22 @@
 import { combineReducers } from "redux";
 
-import userReducer from "./userReducer";
-// import assetReducer from "./assetReducer";
+import AuthReducer from "./AuthReducer";
+import UserReducer from "./UserReducer";
+import AssetReducer from "./AssetReducer";
+import RequestReducer from "./RequestReducer";
+import UserAssetReducer from "./UserAssetReducer";
+import VendorReducer from "./VendorReducer";
+import ErrorReducer from "./ErrorReducer";
 
 const rootReducer = combineReducers({
-    userReducer,
-    // assetReducer
+    AuthReducer,
+    UserReducer,
+    AssetReducer,
+    RequestReducer,
+    UserAssetReducer,
+    VendorReducer,
+    ErrorReducer
+
   
 });
 
