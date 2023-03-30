@@ -1,0 +1,24 @@
+/* .navbar-element{
+    margin-left: 10px;
+}
+
+.bg-style{
+    background-image: url(../../../assets/image/front-page.png);
+    background-repeat: no-repeat;
+    background-color: antiquewhite;
+    height: 500px;
+    background-position: center;
+    background-size: cover;
+} */
+
+.navbar-dropdown {
+    color:red;
+    padding-left: 100px;
+    font-weight: 500;
+    font-size: large;
+    border-color: black;
+}
+
+.navbar-select {
+    font-weight: 700;
+}

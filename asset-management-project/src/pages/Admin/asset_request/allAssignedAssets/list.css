@@ -1,0 +1,24 @@
+
+.table-style {
+  border-collapse: collapse;
+  margin: auto;
+  color:rgb(139, 139, 231);
+  padding: 50px 50px;
+  width: 80%;
+}
+
+table td tr th {
+    text-align: center;
+    
+}
+
+.loader-parent {
+  padding: 15rem;
+  height: 80%;
+}
+
+.loader-child {
+  padding: 10rem;
+  max-width: 10px;
+  margin: 0 auto;
+}
