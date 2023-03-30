@@ -68,6 +68,7 @@ function* onUpdateUserAssetStartAsync(userAssetInfo) {
     );
     if (response.status === 200) {
       yield delay(500);
+      console.log(userAssetInfo.payload.userasset.user_asset);
       yield put(
         updateUserAssetSuccess(
           userAssetInfo.payload.userasset.user_asset,

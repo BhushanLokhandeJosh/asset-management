@@ -44,7 +44,7 @@ const UserList = ({ users, loading }) => {
                   </Link>
                 </td>
                 <td>
-                  {item.status === "active" && item.name ? (
+                  {item.status === "active" ? (
                     <Link to={`${ROUTES.DELETEUSER}/${item.id}`}>
                       <FaTrashAlt className="delete-icons"></FaTrashAlt>
                     </Link>

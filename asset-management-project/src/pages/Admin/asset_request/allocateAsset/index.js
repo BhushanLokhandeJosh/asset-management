@@ -18,8 +18,9 @@ const AllocateAssetContainer = () => {
 
   const { assets, loading } = useSelector((state) => state.AssetReducer);
 
-  //from requestid finding out userId & userName
   const currentRequest = requests.find((item) => item.id === parseInt(id));
+
+  console.log("currentRequest",currentRequest);
 
 
   return (

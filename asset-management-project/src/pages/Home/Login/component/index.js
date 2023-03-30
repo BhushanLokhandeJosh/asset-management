@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { Form, Formik } from "formik";
@@ -13,6 +13,9 @@ import { ROUTES } from "../../../../routes/constants";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  console.log("...",location.state?.from?.pathname)
+  const from = location.state?.from?.pathname || ROUTES.DASHBOARD;
 
   const initialValues = {
     email: "",
@@ -45,9 +48,8 @@ const Login = () => {
       "user":data
     }
     
-    dispatch(loginStart(loggedUserDetails,navigate));
+    dispatch(loginStart(loggedUserDetails,navigate,from));
 
-    // navigate("/dashboard");
   };
 
   return (

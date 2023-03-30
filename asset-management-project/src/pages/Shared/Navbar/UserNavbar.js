@@ -9,16 +9,16 @@ import { ROUTES } from "../../../routes/constants";
 import ImageContainer from "../Footer/BackgroundImg.js/component";
 import { logoutStart } from "../../../utils/actions/authActions";
 
-const UserNavbar = ({ RequestRoutes, BasicRoutes, EmployeeUpdate }) => {
+const UserNavbar = ({ EmployeeRequestRoutes, BasicRoutes, EmployeeUpdate }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loggedInUser } = useSelector((state) => state.AuthReducer);
   const id = loggedInUser.id;
-  
+
   const navigationHandler = () => {
-    dispatch(logoutStart())
+    dispatch(logoutStart());
     navigate(ROUTES.HOME);
-  }
+  };
 
   return (
     <div>
@@ -29,7 +29,7 @@ const UserNavbar = ({ RequestRoutes, BasicRoutes, EmployeeUpdate }) => {
             <Nav>
               <Nav.Item>
                 <Nav.Link>
-                  {RequestRoutes.map((item, key) => (
+                  {EmployeeRequestRoutes.map((item, key) => (
                     <Link to={item.Path}>
                       <Button variant="Light">{item.Name}</Button>
                     </Link>
@@ -41,9 +41,7 @@ const UserNavbar = ({ RequestRoutes, BasicRoutes, EmployeeUpdate }) => {
             <Nav>
               <Nav.Item>
                 <Nav.Link>
-                  <Link
-                    to={`${ROUTES.UPDATEUSERPROFILE}/${id}`}
-                  >
+                  <Link to={`${ROUTES.UPDATEUSERPROFILE}/${id}`}>
                     <Button variant="Light">Update User</Button>
                   </Link>
                 </Nav.Link>
@@ -73,7 +71,9 @@ const UserNavbar = ({ RequestRoutes, BasicRoutes, EmployeeUpdate }) => {
               <Nav.Link>
                 {BasicRoutes.map((item, key) => (
                   // <Link to={item.Path}>
-                    <Button  onClick={navigationHandler} variant="Light">{item.Name}</Button>
+                  <Button onClick={navigationHandler} variant="Light">
+                    {item.Name}
+                  </Button>
                   // </Link>
                 ))}
               </Nav.Link>
@@ -86,7 +86,7 @@ const UserNavbar = ({ RequestRoutes, BasicRoutes, EmployeeUpdate }) => {
           </Navbar.Brand>
         </Container>
       </Navbar>
-      <ImageContainer/>
+      <ImageContainer />
     </div>
   );
 };

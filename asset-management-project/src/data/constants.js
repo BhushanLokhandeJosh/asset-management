@@ -1,3 +1,5 @@
+import IMAGES from "../assets/image/errorImage";
+
 export const categoryMenu = [
   { key: "Cateogary", value: "" },
   { key: "Laptop", value: "Laptop" },
@@ -61,3 +63,41 @@ export const assetStatusMenu = [
     { key: "Female", value: "Female" },
     { key: "Other", value: "Other" },
   ];
+
+  export const systemUsers = {
+    ADMIN:"admin",
+    EMPLOYEE:"employee"
+  }
+
+  export const ErrorMessage = {
+  400: {
+    errorNumber: "400",
+    errorDescription: "Something wrong with credentials!🤔",
+    errorBody: "Missing Username and Password",
+    errorImg: IMAGES.Error500,
+  },
+  401: {
+    errorNumber: "401",
+    errorDescription: "You are not authorized! 🔐",
+    errorBody: "You don't have permission to access this page. Go Home!",
+    errorImg: IMAGES.Error401,
+  },
+  404: {
+    errorNumber: "404",
+    errorDescription: "Page Not Found ⚠️",
+    errorBody: "We couldn't find the page you are looking for.",
+    errorImg: IMAGES.Error404,
+  },
+  422: {
+    errorNumber: "422",
+    errorDescription: "Please input valid credential⚠️",
+    errorBody: "For reference  use placeholder text format.",
+    errorImg: IMAGES.Error404,
+  },
+  500: {
+    errorNumber: "500",
+    errorDescription: "Internal server error 👨🏻‍💻",
+    errorBody: "Oops, something went wrong!",
+    errorImg: IMAGES.Error500,
+  },
+};

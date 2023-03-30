@@ -18,18 +18,11 @@ const DashBoard = ({
     <div>
       {role === "admin" ? (
         <AdminNavbar
-          UserRoutes={UserRoutes}
-          AssetRoutes={AssetRoutes}
-          BasicRoutes={BasicRoutes}
-          RequestRoutes={AdminRequestRoutes}
-          UserAssetRoutes={UserAssetRoutes}
-          vendorRoutes={vendorRoutes}
+          
         />
       ) : (
         <UserNavbar
-          RequestRoutes={EmployeeRequestRoutes}
-          BasicRoutes={BasicRoutes}
-          EmployeeUpdate= {EmployeeUpdateProfileRoutes}
+          
         />
       )}
     </div>

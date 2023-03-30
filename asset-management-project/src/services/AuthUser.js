@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import { loginSuccess, logoutStart } from "../utils/actions/authActions";
+import { ROUTES } from "../routes/constants";
 
 
 export const getToken = () => {
@@ -23,12 +25,13 @@ export const removeToken = () => {
   sessionStorage.removeItem("user");
 }
 
-export const checkAutoLogin = (dispatch) => {
+export const checkAutoLogin = (dispatch,navigate) => {
   const tokenDetails = getToken();
   const userDetails = getUser();
 
   if(!tokenDetails){
-    dispatch(logoutStart())
+    dispatch(logoutStart());
+    navigate(ROUTES.HOME);
     return;
   }else{
     dispatch(loginSuccess(userDetails,tokenDetails))

@@ -1,8 +1,9 @@
 import * as types from "./actionTypes";
 
 //getAllAssetAction
-export const getAllAssetStart = () => ({
-  type: types.LOAD_GETALL_ASSET
+export const getAllAssetStart = (navigate) => ({
+  type: types.LOAD_GETALL_ASSET,
+  payload:navigate
 });
 
 export const getAllAssetSuccess = (asset) => ({

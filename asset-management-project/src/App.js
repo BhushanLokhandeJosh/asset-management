@@ -2,20 +2,21 @@ import React from "react";
 
 import "./App.css";
 
-import Footer from "./pages/Shared/Footer/component/index";
-import Header from "./pages/Shared/Header/component/index";
-
 import RoutesComponent from "./routes/routings";
 import { ToastContainer } from "react-toastify";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+
 
 function App() {
 
   return (
     <div className="App">
       <ToastContainer/>
-      <Header />
-      <RoutesComponent />
-      <Footer />
+      <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<RoutesComponent/>}/>
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }

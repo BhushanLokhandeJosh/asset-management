@@ -2,8 +2,9 @@ import * as types from "./actionTypes";
 
 
 //getAllUserAction
-export const getAllUserStart = () => ({
-  type: types.LOAD_GETALL_USER
+export const getAllUserStart = (navigate) => ({
+  type: types.LOAD_GETALL_USER,
+  payload:navigate
 });
 
 export const getAllUserSuccess = (users) => ({

@@ -10,3 +10,15 @@
     background-position: center;
     background-size: cover;
 } */
+
+.navbar-dropdown {
+    color:red;
+    padding-left: 100px;
+    font-weight: 500;
+    font-size: large;
+    border-color: black;
+}
+
+.navbar-select {
+    font-weight: 700;
+}

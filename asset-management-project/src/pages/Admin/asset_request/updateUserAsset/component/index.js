@@ -15,7 +15,6 @@ const UpdateUserAsset = ({
   navigate,
   dispatch,
 }) => {
-
   let initialValues = {
     name: updateUserAsset.user.name || updateUserAsset.user.email,
     category: updateUserAsset.asset.category,
@@ -46,7 +45,6 @@ const UpdateUserAsset = ({
     };
     const userAssetId = updateUserAsset.id;
 
-    console.log(userAssetData, updateUserAsset.id);
     dispatch(updateUserAssetStart(userAssetData, userAssetId, navigate));
   };
 

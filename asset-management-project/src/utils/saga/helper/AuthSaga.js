@@ -15,16 +15,17 @@ import { toast } from "react-toastify";
 
 function* onLoginUserStartAsync(user) {
   try {
-    const response = yield call(loginUserApi, user.payload);
+    const response = yield call(loginUserApi, user.payload.user);
+    console.log(".... ",user.payload);
     if (response.status === 200) {
       yield delay(500);
-      yield saveToken(response.data.status.data, response.headers.authorization);
       yield put(loginSuccess(response.data.status.data,response.headers.authorization));
-      yield user.navigate(ROUTES.DASHBOARD);
+      yield user.payload.navigate(user.payload.from);
       yield toast.success("Logged In Successfully...");
     }
   } catch (error) {
     yield put(loginError(error.message));
+    yield user.payload.navigate(ROUTES.ERROR)
   }
 }
 
@@ -33,7 +34,6 @@ function* onLogoutUserStartAsync() {
     const response = yield call(signoutUserApi);
     if (response.status === 200) {
       yield delay(500);
-      yield removeToken();
       yield put(logoutSuccess());
       yield toast.success("Logged Out Successfully...");
     }

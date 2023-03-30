@@ -25,8 +25,9 @@ import {
 
 import { ROUTES } from "../../../routes/constants";
 import { toast } from "react-toastify";
+import ErrorPage from "../../../pages/Home/Error/component";
 
-function* onGetAllAssetStartAsync() {
+function* onGetAllAssetStartAsync(asset) {
   try {
     const response = yield call(getAssetApi);
     if (response.status === 200) {
@@ -34,7 +35,11 @@ function* onGetAllAssetStartAsync() {
       yield put(getAllAssetSuccess(response.data.data.assets));
     }
   } catch (error) {
-    yield put(getAllAssetError(error.message));
+    console.log(error);
+    // Request failed with status code 401'
+    // error.response.data ==> 'You need to sign in or sign up before continuing.
+    yield put(getAllAssetError(error));
+    yield asset.payload(ROUTES.ERROR)
   }
 }
 

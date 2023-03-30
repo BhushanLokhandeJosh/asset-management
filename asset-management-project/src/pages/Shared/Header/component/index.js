@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../../App.css";
 import "../header.css";
 import "../../../../styles/socialmedia-icons.css";
@@ -11,8 +11,20 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { useDispatch } from "react-redux";
+import { logoutStart } from "../../../../utils/actions/authActions";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../../routes/constants";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(logoutStart())
+    navigate(ROUTES.HOME)
+  }, [])
+
   return (
     <div>
       <section className="head">

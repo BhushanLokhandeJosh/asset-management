@@ -30,15 +30,16 @@ const ErrorReducer = (state = initialState,action) => {
     case types.ERROR_GETALL_VENDOR:
     case types.ERROR_SINGLE_VENDOR:
     case types.ERROR_UPDATE_VENDOR:
+      const code = action.payload.errorCode;
+
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload 
       };
+      
     default:
         return state;
-    
-
     }
 }
 

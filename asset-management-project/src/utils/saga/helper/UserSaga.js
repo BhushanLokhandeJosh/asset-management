@@ -24,7 +24,7 @@ import {
 import { ROUTES } from "../../../routes/constants";
 import { toast } from "react-toastify";
 
-function* onGetAllUserStartAsync() {
+function* onGetAllUserStartAsync(action) {
   try {
     const response = yield call(getUserApi);
     
@@ -34,6 +34,7 @@ function* onGetAllUserStartAsync() {
     }
   } catch (error) {
     yield put(getAllUserError(error.message));
+    yield action.payload(ROUTES.ERROR);
   }
 }
 

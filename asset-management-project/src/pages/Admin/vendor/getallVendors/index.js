@@ -19,6 +19,7 @@ const GetAllVendorsContainer = () => {
       navigate(ROUTES.LOGIN)
     }
   }, [])
+  
   return (
     <div>
       <DashBoardContainer/>

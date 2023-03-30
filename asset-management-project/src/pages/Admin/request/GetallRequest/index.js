@@ -21,6 +21,7 @@ const GetAllRequestContainer = () => {
       navigate(ROUTES.LOGIN);
     }
   }, []);
+  console.log(requests);
 
   return (
     <div>

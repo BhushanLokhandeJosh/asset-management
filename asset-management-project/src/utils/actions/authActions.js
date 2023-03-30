@@ -20,10 +20,9 @@ export const registrationError = (error) => ({
 
 
 //Login actions.
-export const loginStart = (user,navigate) => ({
+export const loginStart = (user,navigate,from) => ({
     type:types.LOAD_USER_LOGIN,
-    payload:user,
-    navigate
+    payload:{user,navigate,from}
 })
 
 export const loginSuccess = (user,token) => ({

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { ROUTES } from "./constants";
 
 import Hero from "../pages/Home/Hero/component/index";
@@ -35,8 +35,12 @@ import ErrorContainer from "../pages/Home/Error";
 import { checkAutoLogin } from "../services/AuthUser";
 import UpdateUserProfileContainer from "../pages/User/updateUser";
 import CheckAssetStatusContainer from "../pages/User/checkAssetStatus";
+import UnAuthorizeContainer from "../pages/Home/UnAuthorize";
+import Layout from "../pages/Shared/Layout";
+import RequireAuth from "./RequireAuth";
+import { systemUsers } from "../data/constants";
 
-export const routes = [
+const publicRoutes = [
   {
     path: ROUTES.HOME,
     component: Hero,
@@ -49,18 +53,28 @@ export const routes = [
     path: ROUTES.CONTACT,
     component: Contact,
   },
+];
+
+const basicRoutes = [
   {
     path: ROUTES.LOGIN,
     component: Login,
   },
   {
-    path: ROUTES.LOGOUT,
-    component: Logout,
+    path: ROUTES.UNAUTHORIZED,
+    component: UnAuthorizeContainer,
+  },
+  {
+    path: ROUTES.ERROR,
+    component: ErrorContainer,
   },
   {
     path: ROUTES.DASHBOARD,
     component: DashBoardContainer,
   },
+];
+
+const userRoutes = [
   {
     path: ROUTES.GETALLUSER,
     component: GetAllUser,
@@ -69,6 +83,9 @@ export const routes = [
     path: ROUTES.CREATEUSER,
     component: CreateUser,
   },
+];
+
+const assetRoutes = [
   {
     path: ROUTES.GETALLASSET,
     component: GetAllAssetContainer,
@@ -77,18 +94,9 @@ export const routes = [
     path: ROUTES.CREATEASSET,
     component: CreateAssetContainer,
   },
-  {
-    path: ROUTES.GETALLREQUEST,
-    component: GetAllRequestContainer,
-  },
-  {
-    path: ROUTES.CREATEREQUEST,
-    component: CreateRequestContainer,
-  },
-  {
-    path: ROUTES.GETASSIGNEDASSETS,
-    component: GetAssignedAssetsContainer,
-  },
+];
+
+const vendorRoutes = [
   {
     path: ROUTES.GETALLVENDORS,
     component: GetAllVendorsContainer,
@@ -97,82 +105,157 @@ export const routes = [
     path: ROUTES.CREATEVENDOR,
     component: CreateVendorContainer,
   },
-  {
-    path: ROUTES.ERROR,
-    component: ErrorContainer,
-  },
 ];
 
 const RoutesComponent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    checkAutoLogin(dispatch);
+    checkAutoLogin(dispatch,navigate);
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {routes.map((route, index) => (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {publicRoutes.map((route, index) => (
           <Route path={route.path} key={index} element={<route.component />} />
         ))}
+
+        {basicRoutes.map((route, index) => (
+          <Route path={route.path} key={index} element={<route.component />} />
+        ))}
+
+        {/* User Routes... */}
+        <Route element={<RequireAuth allowedRoles={[systemUsers.ADMIN]} />}>
+          {userRoutes.map((route, index) => (
+            <Route
+              path={route.path}
+              key={index}
+              element={<route.component />}
+            />
+          ))}
+          <Route
+            path={`${ROUTES.UPDATEUSER}/:id/:status`}
+            element={<UpdateUser />}
+          />
+          <Route path={`${ROUTES.DELETEUSER}/:id`} element={<ChangeStatus />} />
+          <Route path={`${ROUTES.VIEWUSER}/:id`} element={<ViewUser />} />
+
+          {/* Asset Routes... */}
+          {assetRoutes.map((route, index) => (
+            <Route
+              path={route.path}
+              key={index}
+              element={<route.component />}
+            />
+          ))}
+
+          <Route
+            path={`${ROUTES.UPDATEASSET}/:id`}
+            element={<UpdateAssetContainer />}
+          />
+          <Route
+            path={`${ROUTES.DELETEASSET}/:id`}
+            element={<DeleteAssetContainer />}
+          />
+
+          {/* Request Routes... */}
+          <Route
+            path={ROUTES.GETALLREQUEST}
+            element={<GetAllRequestContainer />}
+          />
+
+          <Route
+            path={`${ROUTES.UPDATEREQUEST}/:id`}
+            element={<UpdateRequestContainer />}
+          />
+          <Route
+            path={`${ROUTES.VIEWREQUEST}/:id`}
+            element={<ViewRequestContainer />}
+          />
+
+          {/* Asset_Request Routes... */}
+          <Route
+            path={ROUTES.GETASSIGNEDASSETS}
+            element={<GetAssignedAssetsContainer />}
+          />
+          <Route
+            path={`${ROUTES.ALLOCATEASSET}/:id`}
+            element={<AllocateAssetContainer />}
+          />
+          <Route
+            path={`${ROUTES.UPDATEUSERASSET}/:id`}
+            element={<UpdateUserAssetContainer />}
+          />
+          <Route
+            path={`${ROUTES.VIEWUSERASSETS}/:id`}
+            element={<ViewAssignedAssetContainer />}
+          />
+
+          {/* Vendor routes */}
+
+          {vendorRoutes.map((route, index) => (
+            <Route
+              path={route.path}
+              key={index}
+              element={<route.component />}
+            />
+          ))}
+
+          <Route
+            path={`${ROUTES.DELETEVENDOR}/:id`}
+            element={<DeleteVendorContainer />}
+          />
+          <Route
+            path={`${ROUTES.UPDATEVENDOR}/:id`}
+            element={<UpdateVendorContainer />}
+          />
+        </Route>
+
+        <Route element={<RequireAuth allowedRoles={[systemUsers.EMPLOYEE]} />}>
+          {/* Employee */}
+          <Route
+            path={`${ROUTES.UPDATEUSERPROFILE}/:id`}
+            element={<UpdateUserProfileContainer />}
+          />
+
+          {/* Employee */}
+          <Route
+            path={`${ROUTES.CHECKUSERASSETSTATUS}/:id`}
+            element={<CheckAssetStatusContainer />}
+          />
+        </Route>
+
         <Route
-          path={`${ROUTES.UPDATEUSER}/:id/:status`}
-          element={<UpdateUser />}
-        />
-        <Route path={`${ROUTES.DELETEUSER}/:id`} element={<ChangeStatus />} />
-        <Route path={`${ROUTES.VIEWUSER}/:id`} element={<ViewUser />} />
-        <Route
-          path={`${ROUTES.UPDATEASSET}/:id`}
-          element={<UpdateAssetContainer />}
-        />
-        <Route
-          path={`${ROUTES.DELETEASSET}/:id`}
-          element={<DeleteAssetContainer />}
-        />
-        <Route
-          path={`${ROUTES.VIEWASSET}/:id`}
-          element={<ViewAssetContainer />}
-        />
-        <Route
-          path={`${ROUTES.UPDATEREQUEST}/:id`}
-          element={<UpdateRequestContainer />}
-        />
-        <Route
-          path={`${ROUTES.VIEWREQUEST}/:id`}
-          element={<ViewRequestContainer />}
-        />
-        <Route
-          path={`${ROUTES.ALLOCATEASSET}/:id`}
-          element={<AllocateAssetContainer />}
-        />
-        <Route
-          path={`${ROUTES.UPDATEUSERASSET}/:id`}
-          element={<UpdateUserAssetContainer />}
-        />
-        <Route
-          path={`${ROUTES.VIEWUSERASSETS}/:id`}
-          element={<ViewAssignedAssetContainer />}
-        />
-        <Route
-          path={`${ROUTES.DELETEVENDOR}/:id`}
-          element={<DeleteVendorContainer />}
-        />
-        <Route
-          path={`${ROUTES.UPDATEVENDOR}/:id`}
-          element={<UpdateVendorContainer />}
-        />
-        <Route
-          path={`${ROUTES.UPDATEUSERPROFILE}/:id`}
-          element={<UpdateUserProfileContainer />}
-        />
-        <Route
-          path={`${ROUTES.CHECKUSERASSETSTATUS}/:id`}
-          element={<CheckAssetStatusContainer />}
-        />
+          element={
+            <RequireAuth
+              allowedRoles={[systemUsers.ADMIN, systemUsers.EMPLOYEE]}
+            />
+          }
+        >
+          {/* Employee and admin... */}
+          <Route
+            path={`${ROUTES.VIEWASSET}/:id`}
+            element={<ViewAssetContainer />}
+          />
+
+          {/* Employee and admin... */}
+          <Route
+            path={ROUTES.CREATEREQUEST}
+            element={<CreateRequestContainer />}
+          />
+
+          {/* Employee and admin */}
+          <Route path={ROUTES.LOGOUT} element={<Logout />} />
+        </Route>
+
         <Route path="*" element={<Navigate to={ROUTES.ERROR} replace />} />
-      </Routes>
-    </BrowserRouter>
+      </Route>
+    </Routes>
+
+    //
+    // </Routes>
   );
 };
 

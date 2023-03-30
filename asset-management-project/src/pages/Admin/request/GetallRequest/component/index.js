@@ -35,8 +35,6 @@ const GetAllRequest = ({ requests, loading, error }) => {
               <Spinner animation="border" />
             </div>
           </div>
-        ) : error ? (
-          <h3>Error </h3>
         ) : (
           <tbody>
             {requests.map((item, id) => (
@@ -47,11 +45,11 @@ const GetAllRequest = ({ requests, loading, error }) => {
                 <td>{item?.category}</td>
                 <td>{item?.description}</td>
                 <td>{item?.subject}</td>
-                <td>
+                <td className="non-button">
                   {item?.request_status === "pending" ? (
-                    <Button variant="warning">Pending</Button>
+                    <Button variant="outline-warning">Pending</Button>
                   ) : item?.request_status === "approve" ? (
-                    <Button variant="success">Approved</Button>
+                    <Button variant="outline-success">Approved</Button>
                   ) : (
                     <Button variant="danger">Rejected</Button>
                   )}
@@ -67,9 +65,15 @@ const GetAllRequest = ({ requests, loading, error }) => {
                   </Link>
                 </td>
                 <td>
-                  <Link to={`${ROUTES.ALLOCATEASSET}/${item?.id}`}>
-                    <Button variant="info">Allocate</Button>
-                  </Link>
+                  {item?.request_status === "reject" ? (
+                    <Button variant="light">Blocked</Button>
+                  ) : item?.request_status === "pending" ? (
+                    <Button variant="outline-danger">Can't Allocate</Button>
+                  ) : (
+                    <Link to={`${ROUTES.ALLOCATEASSET}/${item?.id}`}>
+                      <Button variant="info">Allocate</Button>
+                    </Link>
+                  )}
                 </td>
               </tr>
             ))}
